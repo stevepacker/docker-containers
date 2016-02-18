@@ -1,0 +1,44 @@
+#!/usr/bin/with-contenv sh
+
+CONFIG_FILE="/etc/samba/smb.conf"
+
+cat > ${CONFIG_FILE} << __EOF__
+[global]
+    workgroup = ${WORKGROUP:-WORKGROUP}
+    server string = %h server
+    netbios name = ${SAMBA_NAME:-samba}
+    security = user
+    map to guest = bad user
+    syslog = 2
+    syslog only = yes
+    log file = /var/log/samba/log.%m
+    guest account = nobody
+    printing = bsd
+    printcap name = /dev/null
+
+__EOF__
+
+export IFS=","
+for DIRECTORY in ${DIRECTORIES:-data}; do
+
+    # Check for user/UID of directory and change php-fpm.conf file to match
+    USERNAME=$(stat -c '%U' "/${DIRECTORY}")
+    if [ "UNKNOWN" == "$USERNAME" ]; then
+        USERID=$(stat -c '%u' "/${DIRECTORY}")
+        USERNAME="samba${DIRECTORY}"
+        adduser -S -D -H -u $USERID $USERNAME
+    fi
+
+    echo "[${DIRECTORY}]"                   >> ${CONFIG_FILE}
+    echo "    path = /${DIRECTORY}"         >> ${CONFIG_FILE}
+    echo "    force user = ${USERNAME}"     >> ${CONFIG_FILE}
+    echo "    public = yes"                 >> ${CONFIG_FILE}
+    echo "    writable = yes"               >> ${CONFIG_FILE}
+    echo "    comment = ${DIRECTORY} share" >> ${CONFIG_FILE}
+    echo "    printable = no"               >> ${CONFIG_FILE}
+    echo "    guest ok = yes"               >> ${CONFIG_FILE}
+    echo "    only guest = yes"             >> ${CONFIG_FILE}
+    echo                                    >> ${CONFIG_FILE}
+done
+
+smbd --foreground --log-stdout --configfile=${CONFIG_FILE}
