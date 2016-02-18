@@ -1,5 +1,7 @@
 # Samba
 
+[![](https://badge.imagelayers.io/stevepacker/samba-alpine:latest.svg)](https://imagelayers.io/?images=stevepacker/samba-alpine:latest 'Get your own badge on imagelayers.io')
+
 This creates a Docker container running [Samba](https://www.samba.org) on [Alpine Linux](https://github.com/gliderlabs/docker-alpine).
 
 ### Example Usage:
