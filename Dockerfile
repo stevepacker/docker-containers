@@ -17,8 +17,9 @@ RUN cd /tmp \
     && apk --update --no-progress add --virtual gpg gnupg \
     && gpg --keyserver pgp.mit.edu --recv-key 0x337EE704693C17EF \
     && gpg --verify /tmp/s6-overlay-amd64.tar.gz.sig /tmp/s6-overlay-amd64.tar.gz \
+    && tar xzf s6-overlay-amd64.tar.gz -C / \
     && apk del gpg \
-    && tar xzf s6-overlay-amd64.tar.gz -C /
+    && rm -rf /tmp/s6-overlay-amd64.tar.gz /tmp/s6-overlay-amd64.tar.gz.sig /root/.gnupg /var/cache/apk/*
 CMD ["/init"]
 
 COPY samba.s6 /etc/services.d/samba/run
