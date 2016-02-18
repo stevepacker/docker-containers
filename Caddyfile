@@ -1,0 +1,18 @@
+0.0.0.0:80, 0.0.0.0:443 {
+
+    log     stdout
+    errors  stderr
+    gzip
+
+    root /srv/
+
+    fastcgi / 127.0.0.1:9000 php
+
+    # only rewrite paths with no file extension (/) or that has .php extension
+    rewrite {
+        ext / .php
+        to  {path} {path}/ /index.php?{query}
+    }
+
+    startup php-fpm-wrapper
+}
