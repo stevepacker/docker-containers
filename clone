@@ -1,0 +1,11 @@
+#!/bin/sh
+
+REPO="$1"
+
+if [ -z "$1" ]; then
+    echo "Error: repo required" >&2
+    echo "Example: docker run --name=app -v $HOME/.ssh/id_rsa:/home/app/.ssh/id_rsa stevepacker/git git@github.com:you/it.git" >&2
+    exit 1;
+fi
+
+git clone -b "$GIT_BRANCH" "$1" /app
