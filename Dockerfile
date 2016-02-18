@@ -7,11 +7,18 @@ ENV HOME=/root
 RUN apk --update --no-progress add openssl \
 	&& rm -rf /var/cache/apk/*
 
-# install s6 supervisor
-ENV S6_VERSION 1.13.0.0
+# install s6 supervisor, verifying its authenticity via instructions at:
+# https://github.com/just-containers/s6-overlay#verifying-downloads
+ENV S6_VERSION 1.17.1.2
 RUN cd /tmp \
     && wget https://github.com/just-containers/s6-overlay/releases/download/v$S6_VERSION/s6-overlay-amd64.tar.gz \
-    && tar xzf s6-overlay-amd64.tar.gz -C /
+    && wget https://github.com/just-containers/s6-overlay/releases/download/v$S6_VERSION/s6-overlay-amd64.tar.gz.sig \
+    && apk --update --no-progress add --virtual gpg gnupg \
+    && gpg --keyserver pgp.mit.edu --recv-key 0x337EE704693C17EF \
+    && gpg --verify /tmp/s6-overlay-amd64.tar.gz.sig /tmp/s6-overlay-amd64.tar.gz \
+    && tar xzf s6-overlay-amd64.tar.gz -C / \
+    && apk del gpg \
+    && rm -rf /tmp/s6-overlay-amd64.tar.gz /tmp/s6-overlay-amd64.tar.gz.sig /root/.gnupg /var/cache/apk/*
 CMD ["/init"]
 
 COPY remote_syslog.s6 /etc/services.d/remote_syslog/run
