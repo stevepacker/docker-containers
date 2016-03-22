@@ -1,7 +1,7 @@
 FROM alpine:3.3
 MAINTAINER Stephen Packer <steve@stevepacker.com>
 
-LABEL caddy_version="0.8.1" \
+LABEL caddy_version="0.8.2" \
       architecture="amd64"
 
 EXPOSE 80 443
