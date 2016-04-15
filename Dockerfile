@@ -19,7 +19,7 @@ RUN apk add --update openssl git tar curl \
     && printf "<?php phpinfo(); ?>" > /srv/index.php
 
 # install caddy
-RUN wget -O - "http://caddyserver.com/download/build?os=linux&arch=amd64&features=git,ipfilter" | tar xvz caddy \
+RUN wget -O - "http://caddyserver.com/download/build?os=linux&arch=amd64&features=cors,git,ipfilter,jsonp,jwt,realip" | tar xvz caddy \
     && mv /caddy /usr/local/bin/caddy
 
 COPY Caddyfile /etc/Caddyfile
