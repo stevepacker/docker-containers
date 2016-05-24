@@ -38,19 +38,5 @@ It also supports running commands before and after starting PHP-FPM and running
 ## PHP Extensions:
 
 - composer
-- php-fpm 
-- php-cli 
-- php-curl 
-- php-gd 
-- php-json 
-- php-iconv 
-- php-mcrypt 
-- php-intl 
-- php-ctype
-- php-pdo_mysql 
-- php-pdo_sqlite 
-- php-posix 
-- php-sockets 
-- php-imap 
-- php-openssl
-- php-phar
+- php7-fpm
+- ... and a bunch of others.  Read the Dockerfile.

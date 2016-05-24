@@ -8,9 +8,26 @@ EXPOSE 80 443
 
 # install php and other libraries
 RUN apk add --update --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ openssl git tar curl \
-        php7-fpm php7-curl php7-gd php7-json php7-iconv php7-mcrypt php7-intl php7-ctype php7-session \
-        php7-pdo_mysql php7-pdo_sqlite php7-posix php7-sockets php7-imap php7-openssl php7-phar \
-        php7-pcntl php7-dom php7-zlib \
+        php7-ctype \
+        php7-curl \
+        php7-dom \
+        php7-fpm \
+        php7-gd \
+        php7-iconv \
+        php7-imap \
+        php7-intl \
+        php7-json \
+        php7-mcrypt \
+        php7-mbstring \
+        php7-openssl \
+	php7-pcntl \
+        php7-pdo_mysql \
+        php7-pdo_sqlite \
+        php7-phar \
+        php7-posix \ 
+        php7-session \
+        php7-sockets \
+        php7-zlib \
     && rm -rf /var/cache/apk/* \
     && ln -s /usr/bin/php7 /usr/local/bin/php \
     && echo "clear_env = no" >> /etc/php7/php-fpm.conf \
