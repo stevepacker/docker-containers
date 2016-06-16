@@ -10,9 +10,11 @@ RUN apk -U add nodejs openssl \
     && adduser -D -u 1000 node \
     && chown -Rf node /app
 
-COPY run.sh /run
+COPY run.sh /run.sh
 
 USER node
 
-CMD ["/run"]
+CMD ["/run.sh"]
 
+ENV SUPERVISOR="" \
+    SUPERVISORFLAGS=""

@@ -22,3 +22,13 @@ defaults to running "node server.js").
 
 - `/app` is where your application code should reside.
 
+## Environment Variables
+
+SUPERVISOR=
+SUPERVISORFLAGS=
+
+Provides a means to wrap your application in a supervisor.  Example:
+
+- `SUPERVISOR=nodemon`
+- `SUPERVISOR=nodemon SUPERVISORFLAGS="--watch /app/lib --delay 5"`
+- `SUPERVISOR=supervisor SUPERVISORFLAGS=--non-interactive --timestamp --no-restart-on success --exec"`
