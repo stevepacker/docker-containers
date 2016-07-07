@@ -4,8 +4,9 @@ MAINTAINER Stephen Packer <steve@stevepacker.com>
 ENV HOME=/root
 
 # install packages
-RUN apk --update --no-progress add openssl \
-	&& rm -rf /var/cache/apk/*
+RUN apk --update --no-progress add openssl ca-certificates \
+	&& rm -rf /var/cache/apk/* \
+        && update-ca-certificates
 
 # This creates a directory, which is not right.  But you should "docker run -v" this file.
 COPY sample-log_files.yml /etc/papertrail.yml
