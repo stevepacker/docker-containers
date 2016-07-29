@@ -1,13 +1,11 @@
-FROM alpine:edge
+FROM alpine:3.4
 MAINTAINER Stephen Packer <steve@stevepacker.com>
-
-LABEL caddy_version="0.8.3" \
-      architecture="amd64"
 
 EXPOSE 80 443
 
 # install php and other libraries
-RUN apk add --update --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ openssl git tar curl \
+RUN echo "http://dl-3.alpinelinux.org/alpine/edge/testing/" >> /etc/apk/repositories \
+    && apk add --update openssl git tar curl \
         php7-ctype \
         php7-curl \
         php7-dom \
@@ -20,13 +18,14 @@ RUN apk add --update --repository http://dl-3.alpinelinux.org/alpine/edge/testin
         php7-mcrypt \
         php7-mbstring \
         php7-openssl \
-	php7-pcntl \
+        php7-pcntl \
         php7-pdo_mysql \
         php7-pdo_sqlite \
         php7-phar \
-        php7-posix \ 
+        php7-posix \
         php7-session \
         php7-sockets \
+        php7-xdebug \
         php7-zlib \
     && rm -rf /var/cache/apk/* \
     && ln -s /usr/bin/php7 /usr/local/bin/php \
@@ -38,7 +37,7 @@ RUN apk add --update --repository http://dl-3.alpinelinux.org/alpine/edge/testin
     && printf "<?php phpinfo(); ?>" > /srv/index.php
 
 # install caddy
-RUN wget -O - "http://caddyserver.com/download/build?os=linux&arch=amd64&features=cors,git,ipfilter,jsonp,jwt,realip" | tar xvz caddy \
+RUN wget -O - "http://caddyserver.com/download/build?os=linux&arch=amd64&features=git,ipfilter,jwt,realip" | tar xvz caddy \
     && mv /caddy /usr/local/bin/caddy
 
 COPY Caddyfile /etc/Caddyfile
