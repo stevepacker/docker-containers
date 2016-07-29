@@ -1,20 +1,19 @@
 # Caddy Server with PHP-FPM
 
-[![](https://badge.imagelayers.io/stevepacker/caddy-php:latest.svg)](https://imagelayers.io/?images=stevepacker/caddy-php:latest 'Get your own badge on imagelayers.io')
+[![](https://badge.imagelayers.io/stevepacker/caddy-php7-xdebug:latest.svg)](https://imagelayers.io/?images=stevepacker/caddy-php7-xdebug:latest 'Get your own badge on imagelayers.io')
 
 This creates a Docker container running PHP on Alpine Linux.
 
 ## Why another container?  
 
-I just wanted all the PHP libraries I tend to use.  Consider
-this the kitchen-sink version of the parent container by abiosoft.
+I just wanted all the PHP libraries I tend to use.
 
 It also supports running commands before and after starting PHP-FPM and running 
 `composer install` before running PHP-FPM.
 
 ## Run Example
 
-- `docker run -p 80:80 -p 443:443 -v /var/www/html:/srv stevepacker/caddy-php`
+- `docker run -p 80:80 -p 443:443 -v /var/www/html:/srv stevepacker/caddy-php7-xdebug`
 
 
 ## Docker Environment Variables
@@ -39,4 +38,5 @@ It also supports running commands before and after starting PHP-FPM and running
 
 - composer
 - php7-fpm
+- php7-xdebug
 - ... and a bunch of others.  Read the Dockerfile.
