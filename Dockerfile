@@ -3,7 +3,7 @@ MAINTAINER Stephen Packer <steve@stevepacker.com>
 
 RUN mkdir -p /tmp/newrelic \
     && cd /tmp/newrelic \
-    && export DLFILE=$(curl https://download.newrelic.com/php_agent/release/ | awk -F\" '/linux.tar.gz/ { print $2 }') \
+    && export DLFILE=$(curl https://download.newrelic.com/php_agent/release/ | awk -F\" '/linux-musl.tar.gz/ { print $2 }') \
     && echo "Downloading: $DLFILE" \
     && wget "http://download.newrelic.com/php_agent/release/${DLFILE}" \
     && tar xfz newrelic-php5-*.tar.gz \
