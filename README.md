@@ -17,9 +17,12 @@ containers can subsequently mount `/app` via --volumes-from.
 - `docker run --volumes-from=app stevepacker/git pull` 
     will change into `/app` and pull the latest code for whatever branch is 
     currently checked out
-- `docker run --volumes-from=app stevepacker/git pull 1.1.0` 
+- `docker run --volumes-from=app stevepacker/git checkout 1.1.0` 
     will change into `/app`, fetch the latest from origin, checkout tag `1.1.0`,
     and pull the latest code
+- `docker run --rm -it --entrypoint sh stevepacker/git sh`
+    since Entrypoint is defined in the Dockerfile, getting access to the shell
+    requires overriding by command line.
      
 ## Non-privileged User: app
 
