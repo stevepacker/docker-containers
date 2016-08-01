@@ -13,7 +13,8 @@ RUN apk -U add git openssl openssh less \
 USER app
 WORKDIR /app
 VOLUME ["/app"]
-ENTRYPOINT ["git"]
+ENTRYPOINT ["/entrypoint.sh"]
+COPY entrypoint.sh /entrypoint.sh
 
 # Don't validate SSH Host
 ENV GIT_SSH_COMMAND="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no" \
