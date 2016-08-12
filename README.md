@@ -1,6 +1,6 @@
 # Caddy Server with PHP-FPM
 
-[![](https://badge.imagelayers.io/stevepacker/caddy-php:latest.svg)](https://imagelayers.io/?images=stevepacker/caddy-php:latest 'Get your own badge on imagelayers.io')
+[![](https://images.microbadger.com/badges/image/stevepacker/caddy-php7-newrelic.svg)](https://microbadger.com/images/stevepacker/caddy-php7-newrelic "Get your own image badge on microbadger.com")
 
 This creates a Docker container running PHP on Alpine Linux.
 
