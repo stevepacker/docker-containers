@@ -14,9 +14,9 @@ Built using:
 * [Tini init system](https://github.com/krallin/tini)
 
 Using IFTTT, this image will automatically build in the latest remote_syslog2.  This was done by:
-# Activating the Docker Hub > Build Settings > Build Triggers
-# Creating an IFTTT recipe using:
-#* If there is a new RSS Feed item: https://github.com/papertrail/remote_syslog2/releases.atom
-#* Use Maker channel to make a POST request to the Docker Hub Build Trigger
+* Activating the Docker Hub > Build Settings > Build Triggers
+* Creating an IFTTT recipe using:
+** If there is a new RSS Feed item: https://github.com/papertrail/remote_syslog2/releases.atom
+** Use Maker channel to make a POST request to the Docker Hub Build Trigger
 
 Untested, but hopeful.
