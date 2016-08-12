@@ -1,5 +1,7 @@
 # NodeJS 
 
+[![](https://images.microbadger.com/badges/image/stevepacker/nodejs-supervisor.svg)](https://microbadger.com/images/stevepacker/nodejs-supervisor "Get your own image badge on microbadger.com")
+
 This container runs NodeJS on [Alpine Linux](https://hub.docker.com/_/alpine).
 
 It is also bundled with 
