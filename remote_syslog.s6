@@ -1,3 +1,0 @@
-#!/usr/bin/with-contenv sh
-
-/usr/local/bin/remote_syslog --no-detach --tls

@@ -1,21 +1,19 @@
 FROM alpine:latest
 MAINTAINER Stephen Packer <steve@stevepacker.com>
 
-ENV HOME=/root
+# install packages and remote_syslog
+RUN apk --no-cache --no-progress add openssl tini \
+        && export PAPERTRAIL_PATH=$(wget -O - https://github.com/papertrail/remote_syslog2/releases 2>/dev/null | awk -F\" '/_linux_amd64.tar.gz/ { print $2 }' | head -1) \
+        && wget -O - "https://github.com/$PAPERTRAIL_PATH" | tar xz \
+        && chown -Rf root:root remote_syslog \
+        && mv remote_syslog/remote_syslog /usr/local/bin \
+        && mv remote_syslog/example_config.yml /etc/papertrail.yml \
+        && rm -Rf remote_syslog
 
-# install packages
-RUN apk --update --no-progress add openssl ca-certificates \
-	&& rm -rf /var/cache/apk/* \
-        && update-ca-certificates
+# use [Tini](https://github.com/krallin/tini) as init system 
+# for reaping zombies and performing signal forwarding
+ENTRYPOINT ["/sbin/tini", "--"]
 
-# This creates a directory, which is not right.  But you should "docker run -v" this file.
-COPY sample-log_files.yml /etc/papertrail.yml
-
-ENV PAPERTRAIL_VERSION 0.17
-ENV PAPERTRAIL_URL https://github.com/papertrail/remote_syslog2/releases/download/v$PAPERTRAIL_VERSION/remote_syslog_linux_amd64.tar.gz
-RUN cd /tmp \
-    && wget -O - $PAPERTRAIL_URL | tar xz \
-    && mv remote_syslog/remote_syslog /usr/local/bin \
-    && rm -Rf remote_syslog
-
+# run remote_syslog in foreground
 CMD ["/usr/local/bin/remote_syslog", "--no-detach", "--configfile=/etc/papertrail.yml"]
+
