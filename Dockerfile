@@ -2,7 +2,7 @@ FROM alpine:latest
 MAINTAINER Stephen Packer <steve@stevepacker.com>
 
 # install packages and remote_syslog
-RUN apk --no-cache --no-progress add openssl tini \
+RUN apk --no-cache --no-progress add openssl ca-certificates tini \
         && export PAPERTRAIL_PATH=$(wget -O - https://github.com/papertrail/remote_syslog2/releases 2>/dev/null | awk -F\" '/_linux_amd64.tar.gz/ { print $2 }' | head -1) \
         && wget -O - "https://github.com/$PAPERTRAIL_PATH" | tar xz \
         && chown -Rf root:root remote_syslog \
