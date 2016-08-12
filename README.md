@@ -1,5 +1,7 @@
 # Git in Docker
 
+[![](https://images.microbadger.com/badges/image/stevepacker/git.svg)](https://microbadger.com/images/stevepacker/git "Get your own image badge on microbadger.com")
+
 This container is specifically to clone and update a git repo.  It is based on the
 minimalist [Alpine Linux](https://hub.docker.com/_/alpine), and installs:
 
