@@ -1,4 +1,4 @@
-FROM alpine:3.4
+FROM alpine:edge
 MAINTAINER Stephen Packer <steve@stevepacker.com>
 
 EXPOSE 80 443
@@ -11,7 +11,7 @@ ENV PHP_BEFORE= \
 
 # install php and other libraries
 RUN echo "http://dl-3.alpinelinux.org/alpine/edge/testing/" >> /etc/apk/repositories \
-    && apk add --update openssl git tar curl tini \
+    && apk --no-cache add openssl git tar curl tini \
         php7-bcmath \
         php7-bz2 \
         php7-ctype \
