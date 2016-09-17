@@ -12,6 +12,8 @@ ENV PHP_BEFORE= \
 # install php and other libraries
 RUN echo "http://dl-3.alpinelinux.org/alpine/edge/testing/" >> /etc/apk/repositories \
     && apk add --update openssl git tar curl tini \
+        php7-bcmath \
+        php7-bz2 \
         php7-ctype \
         php7-curl \
         php7-dom \
@@ -23,12 +25,14 @@ RUN echo "http://dl-3.alpinelinux.org/alpine/edge/testing/" >> /etc/apk/reposito
         php7-json \
         php7-mcrypt \
         php7-mbstring \
+        php7-mongodb \
         php7-openssl \
         php7-pcntl \
         php7-pdo_mysql \
         php7-pdo_sqlite \
         php7-phar \
-        php7-posix \ 
+        php7-posix \
+        php7-redis \ 
         php7-session \
         php7-sockets \
         php7-zlib \
