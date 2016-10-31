@@ -11,7 +11,7 @@ ENV PHP_BEFORE= \
 
 # install php and other libraries
 RUN echo "http://dl-3.alpinelinux.org/alpine/edge/testing/" >> /etc/apk/repositories \
-    && apk --no-cache add openssl git tar curl tini \
+    && apk --no-cache add openssl git tar curl tini ssmtp \
         php7-bcmath \
         php7-bz2 \
         php7-ctype \

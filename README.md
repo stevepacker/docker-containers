@@ -11,6 +11,8 @@ I just wanted all the PHP libraries I tend to use.
 It also supports running commands before and after starting PHP-FPM and running 
 `composer install` before running PHP-FPM.
 
+It also includes the (https://wiki.archlinux.org/index.php/SSMTP)[ssmtp] package so that after its configured you can use PHP's mail() function.
+
 ## Run Example
 
 - `docker run -p 80:80 -p 443:443 -v /var/www/html:/srv stevepacker/caddy-php7`
@@ -28,6 +30,8 @@ It also supports running commands before and after starting PHP-FPM and running
     `composer install` will automatically run prior to starting `php-fpm`
 - `/root/.caddy`: When an SSL is generated, files are stored here by Caddy.
 - `/etc/Caddyfile`: If you intend to include your own Caddyfile, mount it here.
+- `/etc/ssmtp/ssmtp.conf `: If you intend to use PHP's mail() function, configure this file.
+- `/etc/ssmtp/revaliases`: Another configuration file for ssmtp
 
 ## Caddy Extensions:
 
