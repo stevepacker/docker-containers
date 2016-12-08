@@ -1,0 +1,48 @@
+0.0.0.0:80, 0.0.0.0:443 {
+
+    log     stdout
+    errors  stderr
+    gzip
+
+    root /srv/
+
+    fastcgi / 127.0.0.1:9000 php
+
+    # only rewrite paths with no file extension (/) or that has .php extension
+    rewrite {
+        ext / .php
+        to  {path} {path}/ /index.php?{query}
+    }
+
+    errors {
+        log stdout
+        400 _blank.html
+        401 _blank.html
+        402 _blank.html
+        403 _blank.html
+        404 _blank.html
+        405 _blank.html
+        406 _blank.html
+        407 _blank.html
+        408 _blank.html
+        409 _blank.html
+        410 _blank.html
+        418 _blank.html
+        420 _blank.html
+        426 _blank.html
+        428 _blank.html
+        429 _blank.html
+        500 _blank.html
+        501 _blank.html
+        502 _blank.html
+        503 _blank.html
+        504 _blank.html
+        505 _blank.html
+        508 _blank.html
+        510 _blank.html
+        598 _blank.html
+        599 _blank.html
+    }
+
+    startup php-fpm-wrapper
+}
