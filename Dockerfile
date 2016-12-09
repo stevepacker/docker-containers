@@ -56,7 +56,7 @@ RUN apk -U add openssl git tar curl tini openssl ssmtp \
     && wget -O - "http://caddyserver.com/download/build?os=linux&arch=amd64&features=git,ipfilter,jwt,realip" | tar xvz caddy \
     && mv caddy /usr/local/bin/caddy \
     && ln -sf /usr/local/etc/php /etc/php \
-    && ln -sF /var/www/html /srv \
+    && ln -sf /var/www/html /srv \
     && echo "Done"
 
 COPY Caddyfile /etc/Caddyfile
