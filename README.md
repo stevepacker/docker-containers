@@ -2,7 +2,7 @@
 
 [![](https://images.microbadger.com/badges/image/stevepacker/caddy-php71.svg)](https://microbadger.com/images/stevepacker/caddy-php71 "Get your own image badge on microbadger.com")
 
-This creates a Docker container running PHP v7.1 on Alpine Linux.  It also utilizes the PHP docker image so that it gets automatically re-built with new PHP releases
+This creates a Docker container running PHP v7.1 and Composer on Alpine Linux.  It also utilizes the official [PHP docker image](https://hub.docker.com/_/php/) so that it gets automatically re-built with new PHP releases
 
 ## Why another container?  
 
@@ -11,7 +11,7 @@ I just wanted all the PHP libraries I tend to use.
 It also supports running commands before and after starting PHP-FPM and running 
 `composer install` before running PHP-FPM.
 
-It also includes the [https://wiki.archlinux.org/index.php/SSMTP](ssmtp) package so that after its configured you can use PHP's mail() function.
+It also includes the [ssmtp](https://wiki.archlinux.org/index.php/SSMTP) package so that after its configured you can use PHP's mail() function.
 
 ## Run Example
 
@@ -51,4 +51,4 @@ It also includes the [https://wiki.archlinux.org/index.php/SSMTP](ssmtp) package
 - curl
 - git
 - tar
-- [https://github.com/krallin/tini](tini)
+- [tini](https://github.com/krallin/tini)
