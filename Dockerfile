@@ -11,7 +11,7 @@ ENV PHP_BEFORE= \
 
 # install php and other libraries
 RUN apk -U add openssl git tar curl tini openssl ssmtp \
-    && apk add --virtual build-dependencies \
+    # dependencies for PHP extensions below
 	bzip2-dev \
         curl-dev \
         libxml2-dev \
@@ -50,7 +50,6 @@ RUN apk -U add openssl git tar curl tini openssl ssmtp \
     && echo "extension=redis.so" > /usr/local/etc/php/conf.d/redis.ini \
     && echo "extension=mongodb.so" > /usr/local/etc/php/conf.d/mongodb.ini \
     && echo "<?php phpinfo();" > /var/www/html/index.php \
-    && apk del build-dependencies \
     && rm -rf /var/cache/apk/* \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
     && wget -O - "http://caddyserver.com/download/build?os=linux&arch=amd64&features=git,ipfilter,jwt,realip" | tar xvz caddy \
