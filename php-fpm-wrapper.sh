@@ -9,7 +9,7 @@ if [ -f /srv/composer.lock ]; then
     composer install ${PHP_COMPOSER_FLAGS}
 fi
 
-/usr/local/sbin/php-fpm /usr/local/etc/php/ --fpm-config /usr/local/etc/php-fpm/php-fpm.conf --nodaemonize --force-stderr
+/usr/local/sbin/php-fpm -c /usr/local/etc/php/ --fpm-config /usr/local/etc/php-fpm.conf --nodaemonize --force-stderr
 
 if [ ! -z "$PHP_AFTER" ]; then
     eval $PHP_AFTER

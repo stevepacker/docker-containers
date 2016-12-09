@@ -20,6 +20,9 @@ RUN apk -U add openssl git tar curl tini openssl ssmtp \
 	icu-dev \
 	libmcrypt-dev \
 	sqlite-dev \
+    # dependencies for PECL extensions below
+        build-base \
+        autoconf \
     && docker-php-ext-install \
 	bcmath \
 	bz2 \
@@ -47,10 +50,10 @@ RUN apk -U add openssl git tar curl tini openssl ssmtp \
 	xml \
 	zip \
     && pecl install mongodb redis \
-    && echo "extension=redis.so" > /usr/local/etc/php/conf.d/redis.ini \
-    && echo "extension=mongodb.so" > /usr/local/etc/php/conf.d/mongodb.ini \
-    && echo "<?php phpinfo();" > /var/www/html/index.php \
+    && docker-php-ext-enable redis mongodb \
+    && apk del build-base autoconf \
     && rm -rf /var/cache/apk/* \
+    && echo "<?php phpinfo();" > /var/www/html/index.php \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
     && wget -O - "http://caddyserver.com/download/build?os=linux&arch=amd64&features=git,ipfilter,jwt,realip" | tar xvz caddy \
     && mv caddy /usr/local/bin/caddy \
