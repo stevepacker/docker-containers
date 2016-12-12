@@ -55,6 +55,8 @@ RUN apk -U add openssl git tar curl tini openssl ssmtp \
     && rm -rf /var/cache/apk/* \
     && echo "<?php phpinfo();" > /var/www/html/index.php \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
+     # I use Yii2 PHP Framework a lot, so I prefer this composer package be pre-installed
+    && composer global require "fxp/composer-asset-plugin:^1.2.0" \
     && wget -O - "http://caddyserver.com/download/build?os=linux&arch=amd64&features=git,ipfilter,jwt,realip" | tar xvz caddy \
     && mv caddy /usr/local/bin/caddy \
     && ln -sf /usr/local/etc/php /etc/php \
