@@ -40,6 +40,8 @@ RUN echo "http://dl-3.alpinelinux.org/alpine/edge/testing/" >> /etc/apk/reposito
     && ln -s /usr/bin/php7 /usr/local/bin/php \
     && echo "clear_env = no" >> /etc/php7/php-fpm.conf \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
+     # I use Yii2 a lot, and it uses this composer library
+    && composer global require "fxp/composer-asset-plugin:^1.2.0" \
     && adduser -SDHu 1000 php \
     && sed -i "s/user *=.*$/user = php/" /etc/php7/php-fpm.conf \
     && mkdir -p /srv \
