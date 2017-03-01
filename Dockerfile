@@ -60,13 +60,18 @@ RUN apk -U add openssl git tar curl tini openssl ssmtp \
     && wget -O - "http://caddyserver.com/download/build?os=linux&arch=amd64&features=git,ipfilter,jwt,realip" | tar xvz caddy \
     && mv caddy /usr/local/bin/caddy \
     && ln -sf /usr/local/etc/php /etc/php \
-    && ln -sf /var/www/html /srv \
+    && mkdir -p /srv \
+    && rm -Rf /var/www/html \
+    && ln -sf /srv /var/www/html \
     && echo "Done"
 
 COPY Caddyfile /etc/Caddyfile
 COPY php-fpm-wrapper.sh /usr/local/bin/php-fpm-wrapper
 
-VOLUME ["/root/.caddy", "/srv"]
+# Removing the volume definitions as it causes extending images to not be able to modify the files in these directories
+# VOLUME ["/root/.caddy", "/srv"]
+
+WORKDIR /srv
 
 CMD ["/usr/local/bin/caddy", "-conf=/etc/Caddyfile", "-agree"]
 
