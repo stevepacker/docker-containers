@@ -1,0 +1,11 @@
+Includes all the plugins listed on:
+https://caddyserver.com/download
+
+!! Use at your own risk !!
+(The Caddy website says "Only choose plugins you trust", and since this container contains ALL the plugins, you need a lot of trust to use it)
+
+Javascript console wizardry includes running:
+$("label.plugin :checkbox[data-name]").attr("checked", false).click();
+console.log($("#direct-link").val().split('plugins=')[1])
+
+The output then goes into the Dockerfile ARG
