@@ -1,8 +1,8 @@
 # Caddy Server with PHP-FPM
 
-[![](https://images.microbadger.com/badges/image/stevepacker/caddy-php71.svg)](https://microbadger.com/images/stevepacker/caddy-php71 "Get your own image badge on microbadger.com")
+[![](https://images.microbadger.com/badges/image/stevepacker/caddy-php72.svg)](https://microbadger.com/images/stevepacker/caddy-php72 "Get your own image badge on microbadger.com")
 
-This creates a Docker container running PHP v7.1 and Composer on Alpine Linux.  It also utilizes the official [PHP docker image](https://hub.docker.com/_/php/) so that it gets automatically re-built with new PHP releases
+This creates a Docker container running PHP v7.2 and Composer on Alpine Linux.  It also utilizes the official [PHP docker image](https://hub.docker.com/_/php/) so that it gets automatically re-built with new PHP releases
 
 ## Why another container?  
 
@@ -15,7 +15,7 @@ It also includes the [ssmtp](https://wiki.archlinux.org/index.php/SSMTP) package
 
 ## Run Example
 
-- `docker run -p 80:80 -p 443:443 -v /var/www/html:/srv stevepacker/caddy-php71`
+- `docker run -p 80:80 -p 443:443 -v /var/www/html:/srv stevepacker/caddy-php72`
 
 
 ## Docker Environment Variables
@@ -35,10 +35,11 @@ It also includes the [ssmtp](https://wiki.archlinux.org/index.php/SSMTP) package
 
 ## Caddy Extensions:
 
-- git
-- ipfilter
-- jwt
-- realip
+- The "Personal" license
+- http.ipfilter
+- http.minify
+- http.realip
+- net
 
 ## PHP Extensions:
 
